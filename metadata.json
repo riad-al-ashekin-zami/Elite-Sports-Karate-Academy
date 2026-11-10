@@ -1,0 +1,6 @@
+{
+  "name": "Elite Sports Karate Academy",
+  "description": "Elite Sports Karate Academy in Mohammadpur, Dhaka, Bangladesh. Karate training for all ages, boys and girls — Train Hard. Be Stronger.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

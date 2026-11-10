@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Bebas Neue", sans-serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-bengali: "Noto Sans Bengali", "Plus Jakarta Sans", sans-serif;
+  --color-karate-black: #0B0B0B;
+  --color-karate-card: #141414;
+  --color-karate-surface: #1F1F1F;
+  --color-karate-red: #E11D2E;
+  --color-karate-red-hover: #C51624;
+  --color-karate-yellow: #FACC15;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-sans);
+}
+
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: 0.04em;
+}
+
+.font-bengali {
+  font-family: var(--font-bengali);
+}
+
+/* Subtle martial arts angled accent lines */
+.angled-cut {
+  clip-path: polygon(0 0, 100% 0, 96% 100%, 0% 100%);
+}
+
+.angled-cut-reverse {
+  clip-path: polygon(4% 0, 100% 0, 100% 100%, 0% 100%);
+}
