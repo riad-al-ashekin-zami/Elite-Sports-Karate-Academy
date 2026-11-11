@@ -143,4 +143,11 @@ export const ALL_SITE_PHOTOS: GalleryPhoto[] = [
     caption: "Elite Sports Karate Academy Official Banner - Train Hard. Be Stronger.",
     category: "Banner",
   },
+  {
+    id: "founder-portrait",
+    src: "/images/founder-portrait.jpg",
+    alt: "Portrait of Md Masud, Founder of Elite Sports Karate Academy",
+    caption: "Md Masud — Founder of Elite Sports Karate Academy",
+    category: "Founder",
+  },
 ];

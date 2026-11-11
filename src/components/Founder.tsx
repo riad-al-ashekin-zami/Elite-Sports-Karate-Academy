@@ -25,14 +25,36 @@ export const Founder: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">
           {/* Left Column: Bio, Vision Quote, and Founder Photos */}
           <div className="lg:col-span-6 flex flex-col gap-8">
-            {/* Bio Card */}
-            <div className="p-6 sm:p-7 rounded-xl bg-neutral-900/90 border border-neutral-800">
-              <h3 className="text-xs font-mono uppercase tracking-wider text-neutral-400 mb-2">
-                Background & Journey
-              </h3>
-              <p className="text-neutral-200 leading-relaxed text-base">
-                Driven by a childhood passion for martial arts, Md Masud began his formal training in 2013. Demonstrating steadfast personal discipline, he balanced rigorous daily practice alongside his professional responsibilities to advance through authentic martial arts ranks.
-              </p>
+            {/* Founder Profile Card with Portrait Photo */}
+            <div className="p-6 sm:p-7 rounded-2xl bg-neutral-900/90 border border-neutral-800 shadow-xl flex flex-col sm:flex-row gap-6 items-center sm:items-start">
+              {/* Founder Portrait Photo */}
+              <div className="shrink-0 w-36 h-48 sm:w-44 sm:h-56 rounded-xl overflow-hidden border-2 border-neutral-700/80 hover:border-[#E11D2E]/60 transition-colors shadow-2xl bg-neutral-950 relative group">
+                <ImageWithFallback
+                  src="/images/founder-portrait.jpg"
+                  alt="Md Masud, Founder of Elite Sports Karate Academy"
+                  caption="Md Masud — Founder of Elite Sports Karate Academy"
+                  photoId="founder-portrait"
+                  focalPoint="top"
+                  className="w-full h-full"
+                  imgClassName="object-cover object-top"
+                />
+              </div>
+
+              {/* Profile Details & Journey */}
+              <div className="flex-1 flex flex-col justify-center text-center sm:text-left">
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#E11D2E]/15 border border-[#E11D2E]/30 text-[#E11D2E] text-xs font-mono uppercase tracking-wider font-semibold self-center sm:self-start mb-2">
+                  Founder Profile
+                </div>
+                <h3 className="font-display text-2xl sm:text-3xl text-white uppercase tracking-wider mb-1">
+                  Md Masud
+                </h3>
+                <p className="text-xs font-mono text-neutral-400 mb-3.5">
+                  Founder, Elite Sports Karate Academy
+                </p>
+                <p className="text-neutral-300 leading-relaxed text-sm sm:text-base">
+                  Driven by a childhood passion for martial arts, Md Masud began his formal training in 2013. Demonstrating steadfast personal discipline, he balanced rigorous daily practice alongside his professional responsibilities to advance through authentic martial arts ranks.
+                </p>
+              </div>
             </div>
 
             {/* Vision Quote Block (Paraphrase of mission, no fabricated direct quotes) */}
