@@ -91,6 +91,7 @@ export const About: React.FC = () => {
                 src="/images/dojo-training.jpg"
                 alt="Punching drill during a class, led by the black-belt instructor"
                 caption="Punching drill during a class, led by the black-belt instructor"
+                photoId="dojo-training"
                 aspectRatio="4/3"
                 className="w-full h-80 sm:h-96 object-cover"
               />

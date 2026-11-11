@@ -64,7 +64,7 @@ export interface GalleryPhoto {
   src: string;
   alt: string;
   caption: string;
-  category: "Dojo" | "Training" | "Outdoor" | "Championship";
+  category: "Dojo" | "Training" | "Outdoor" | "Championship" | "Founder" | "Banner";
 }
 
 export const GALLERY_PHOTOS: GalleryPhoto[] = [
@@ -102,5 +102,45 @@ export const GALLERY_PHOTOS: GalleryPhoto[] = [
     alt: "Karate practice – practitioners of different ages and belts, including a young girl",
     caption: "Karate practice – practitioners of different ages and belts, including a young girl",
     category: "Outdoor",
+  },
+];
+
+// All photos across the website for full-screen viewer
+export const ALL_SITE_PHOTOS: GalleryPhoto[] = [
+  ...GALLERY_PHOTOS,
+  {
+    id: "founder-medal",
+    src: "/images/founder-medal.jpg",
+    alt: "A man in a white taekwondo uniform with a green belt, holding a certificate and a medal, standing in front of the 1st World Open Taekwondo Championship 2026 backdrop",
+    caption: "The founder holding a certificate and medal in front of the championship backdrop",
+    category: "Founder",
+  },
+  {
+    id: "founder-medal-ceremony",
+    src: "/images/founder-medal-ceremony.jpg",
+    alt: "A woman in a black blazer presenting a medal to a man in a white uniform with a green belt in front of the championship backdrop",
+    caption: "Medal presentation ceremony in front of the championship backdrop",
+    category: "Championship",
+  },
+  {
+    id: "championship-plaque",
+    src: "/images/championship-plaque.jpg",
+    alt: "A woman in a black blazer presenting a plaque to a man in a black vest in front of the championship backdrop",
+    caption: "Presentation of a plaque in front of the championship backdrop",
+    category: "Championship",
+  },
+  {
+    id: "championship-stage",
+    src: "/images/championship-stage.jpg",
+    alt: "Large group photo on stage at the championship with many national flags on the backdrop",
+    caption: "Group gathering on stage at the championship with national flags on the backdrop",
+    category: "Championship",
+  },
+  {
+    id: "academy-banner",
+    src: "/images/academy-banner.jpg",
+    alt: "Elite Sports Karate Academy admission banner - Train Hard. Be Stronger.",
+    caption: "Elite Sports Karate Academy Official Banner - Train Hard. Be Stronger.",
+    category: "Banner",
   },
 ];

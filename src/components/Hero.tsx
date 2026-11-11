@@ -1,8 +1,10 @@
 import React from 'react';
-import { Phone, ExternalLink, Sparkles, ChevronDown } from 'lucide-react';
+import { Phone, ExternalLink, Sparkles, ChevronDown, Maximize2 } from 'lucide-react';
 import { CONTACT_INFO } from '../types.ts';
+import { useLightbox } from '../context/LightboxContext.tsx';
 
 export const Hero: React.FC = () => {
+  const { openPhoto } = useLightbox();
   return (
     <section
       id="hero"
@@ -87,6 +89,16 @@ export const Hero: React.FC = () => {
             সকল বয়সের জন্য কারাতে প্রশিক্ষণ — ছেলে ও মেয়ে উভয়ের জন্য।
           </span>
         </div>
+
+        {/* Option to view background dojo group photo in full */}
+        <button
+          type="button"
+          onClick={() => openPhoto('dojo-group')}
+          className="mt-4 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-neutral-900/80 hover:bg-neutral-800 text-neutral-300 hover:text-white border border-neutral-700/80 text-xs font-medium transition-colors cursor-pointer"
+        >
+          <Maximize2 className="w-3.5 h-3.5 text-[#E11D2E]" />
+          <span>View Dojo Photo in Full Screen</span>
+        </button>
       </div>
 
       {/* Subtle Scroll Down Prompt */}

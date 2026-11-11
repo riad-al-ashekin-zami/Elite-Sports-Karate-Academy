@@ -14,12 +14,15 @@ import { Gallery } from './components/Gallery.tsx';
 import { Contact } from './components/Contact.tsx';
 import { Footer } from './components/Footer.tsx';
 import { MobileCallBar } from './components/MobileCallBar.tsx';
+import { LightboxProvider } from './context/LightboxContext.tsx';
+import { LightboxModal } from './components/LightboxModal.tsx';
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-[#0B0B0B] text-white flex flex-col font-sans selection:bg-[#E11D2E] selection:text-white relative">
-      {/* 1. NAVBAR */}
-      <Navbar />
+    <LightboxProvider>
+      <div className="min-h-screen bg-[#0B0B0B] text-white flex flex-col font-sans selection:bg-[#E11D2E] selection:text-white relative">
+        {/* 1. NAVBAR */}
+        <Navbar />
 
       <main className="flex-grow">
         {/* 2. HERO */}
@@ -44,11 +47,15 @@ export default function App() {
         <Contact />
       </main>
 
-      {/* 9. FOOTER */}
-      <Footer />
+        {/* 9. FOOTER */}
+        <Footer />
 
-      {/* Mobile Floating Action: Call */}
-      <MobileCallBar />
-    </div>
+        {/* Mobile Floating Action: Call */}
+        <MobileCallBar />
+
+        {/* Global Fullscreen Lightbox Modal for all site photos */}
+        <LightboxModal />
+      </div>
+    </LightboxProvider>
   );
 }

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Shield, Award, Users, Flame, Sparkles } from 'lucide-react';
+import { Shield, Award, Users, Flame, Sparkles, Maximize2 } from 'lucide-react';
+import { useLightbox } from '../context/LightboxContext.tsx';
 
 interface ImageWithFallbackProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   src: string;
@@ -10,6 +11,8 @@ interface ImageWithFallbackProps extends React.ImgHTMLAttributes<HTMLImageElemen
   imgClassName?: string;
   badge?: string;
   focalPoint?: 'top' | 'center' | 'bottom';
+  allowFullscreen?: boolean;
+  photoId?: string;
 }
 
 export const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
@@ -21,10 +24,22 @@ export const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
   imgClassName = '',
   badge,
   focalPoint = 'center',
+  allowFullscreen = true,
+  photoId,
+  onClick,
   ...props
 }) => {
   const [hasError, setHasError] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
+  const { openPhoto } = useLightbox();
+
+  const handleImageClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (onClick) {
+      onClick(e as unknown as React.MouseEvent<HTMLImageElement>);
+    } else if (allowFullscreen && !hasError) {
+      openPhoto(photoId || src);
+    }
+  };
 
   // Pick an icon based on keywords in alt/src
   const getIcon = () => {
@@ -91,7 +106,21 @@ export const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
   }[focalPoint];
 
   return (
-    <div className={`relative overflow-hidden bg-neutral-900 ${aspectClass} ${className}`}>
+    <div
+      onClick={handleImageClick}
+      className={`relative overflow-hidden bg-neutral-900 ${
+        allowFullscreen ? 'cursor-pointer group' : ''
+      } ${aspectClass} ${className}`}
+      role={allowFullscreen ? 'button' : undefined}
+      tabIndex={allowFullscreen ? 0 : undefined}
+      onKeyDown={(e) => {
+        if (allowFullscreen && (e.key === 'Enter' || e.key === ' ')) {
+          e.preventDefault();
+          handleImageClick(e as unknown as React.MouseEvent<HTMLDivElement>);
+        }
+      }}
+      aria-label={allowFullscreen ? `View full image: ${alt}` : alt}
+    >
       {/* Skeleton / Ambient backdrop before image loads */}
       {!isLoaded && (
         <div className="absolute inset-0 bg-neutral-800 animate-pulse flex items-center justify-center">
@@ -106,11 +135,21 @@ export const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
         loading="lazy"
         onLoad={() => setIsLoaded(true)}
         onError={() => setHasError(true)}
-        className={`w-full h-full object-cover ${focalClass} ${imgClassName} transition-opacity duration-300 ${
-          isLoaded ? 'opacity-100' : 'opacity-0'
-        }`}
+        className={`w-full h-full object-cover ${focalClass} ${imgClassName} transition-all duration-300 ${
+          allowFullscreen ? 'group-hover:scale-[1.02]' : ''
+        } ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
         {...props}
       />
+
+      {/* Subtle hover overlay with expand icon for all site images */}
+      {allowFullscreen && isLoaded && (
+        <div className="absolute inset-0 bg-black/45 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center p-3 pointer-events-none z-10">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-neutral-900/90 text-white text-xs font-medium border border-neutral-700/80 shadow-lg transform translate-y-1 group-hover:translate-y-0 transition-transform">
+            <Maximize2 className="w-3.5 h-3.5 text-[#E11D2E]" />
+            <span>View Full Image</span>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
